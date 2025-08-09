@@ -1,13 +1,19 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
     console.log("Resend API Key:", process.env.RESEND_API_KEY ? "Loaded" : "Missing");
 
-    const { name, email, message } = await req.json();
+    const { name, email, message } = await req.json() as ContactFormData;
 
     const data = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>", // must be verified or default
@@ -34,10 +40,11 @@ export async function POST(req: Request) {
     console.log("Resend API Response:", data);
 
     return NextResponse.json({ success: true, data });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Email sending error:", error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to send email';
     return NextResponse.json(
-      { success: false, error: error.message || "Failed to send email" },
+      { success: false, error: errorMessage },
       { status: 500 }
     );
   }

@@ -51,7 +51,6 @@ const timelineItems = [
 export default function CareerJourney() {
   const containerRef = useRef(null);
   const [progress, setProgress] = useState(0);
-  const isInView = useInView(containerRef, { once: false, amount: 0.3 });
 
   useEffect(() => {
     const handleScroll = () => {

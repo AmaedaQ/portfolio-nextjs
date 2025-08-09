@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope, FaTimes } from "react-icons/fa";
+import { FaEnvelope, FaTimes } from "react-icons/fa";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });

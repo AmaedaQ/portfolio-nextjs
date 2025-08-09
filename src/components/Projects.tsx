@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaGithub, FaExternalLinkAlt, FaTimes, FaChevronLeft, FaChevronRight, FaLayerGroup, FaBolt, FaCode, FaTrophy, FaPlay, FaEye } from 'react-icons/fa';
 
 interface Project {
@@ -344,23 +345,23 @@ export default function Projects() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [activeTab, setActiveTab] = useState<'overview' | 'tech'>('overview');
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     const screenshots = selectedProject?.screenshots;
     if (screenshots && screenshots.length > 0) {
       setCurrentImageIndex((prev) => 
         prev === screenshots.length - 1 ? 0 : prev + 1
       );
     }
-  };
+  }, [selectedProject]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     const screenshots = selectedProject?.screenshots;
     if (screenshots && screenshots.length > 0) {
       setCurrentImageIndex((prev) => 
         prev === 0 ? screenshots.length - 1 : prev - 1
       );
     }
-  };
+  }, [selectedProject]);
 
   // Keyboard navigation for modal
   useEffect(() => {
@@ -373,9 +374,10 @@ export default function Projects() {
         prevImage();
       }
     };
+    
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedProject]);
+  }, [selectedProject, nextImage, prevImage]);
 
   return (
     <section id="projects" className="relative py-16 sm:py-24 px-4 sm:px-6 bg-[#0a0a0c] text-white overflow-hidden">
@@ -433,10 +435,13 @@ export default function Projects() {
 
               {/* Project Image */}
               <div className="relative overflow-hidden h-60">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
+                  width={600}
+                  height={400}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
@@ -593,10 +598,13 @@ export default function Projects() {
                         <span>Screenshots</span>
                       </h4>
                       <div className="relative bg-[#2a2a3e]/50 rounded-xl overflow-hidden max-w-full aspect-[16/9]">
-                        <img
+                        <Image
                           src={selectedProject.screenshots[currentImageIndex]}
                           alt={`${selectedProject.title} screenshot`}
+                          width={1200}
+                          height={675}
                           className="w-full h-full object-contain"
+                          priority
                         />
                         {selectedProject.screenshots.length > 1 && (
                           <>
@@ -628,9 +636,11 @@ export default function Projects() {
                                 idx === currentImageIndex ? 'ring-2 ring-cyan-400' : 'opacity-70 hover:opacity-100'
                               }`}
                             >
-                              <img
+                              <Image
                                 src={screenshot}
                                 alt={`Thumbnail ${idx + 1}`}
+                                width={64}
+                                height={36}
                                 className="w-full h-full object-cover"
                               />
                             </button>
