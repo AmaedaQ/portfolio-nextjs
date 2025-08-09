@@ -66,7 +66,7 @@ export default function Hero() {
           <a href="https://github.com/AmaedaQ" target="_blank" className="hover:text-cyan-400 hover:scale-110 transition-all duration-300">
             <FaGithub />
           </a>
-          <a href="https://linkedin.com/in/your-linkedin" target="_blank" className="hover:text-cyan-400 hover:scale-110 transition-all duration-300">
+          <a href="https://www.linkedin.com/in/amaeda-qureshi-305bb928a/" target="_blank" className="hover:text-cyan-400 hover:scale-110 transition-all duration-300">
             <FaLinkedin />
           </a>
         </motion.div>
