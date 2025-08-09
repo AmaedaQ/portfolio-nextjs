@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
 
 const timelineItems = [
