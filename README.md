@@ -33,5 +33,3 @@ Visit [http://localhost:3000](http://localhost:3000) to view locally.
 [![GitHub](https://img.shields.io/badge/GitHub-%23181717.svg?style=flat&logo=github&logoColor=white)](https://github.com/AmaedaQ)
 [![Email](https://img.shields.io/badge/Email-%23D14836.svg?style=flat&logo=gmail&logoColor=white)](mailto:amaedaqureshi@gmail.com)
 ```
-
-
