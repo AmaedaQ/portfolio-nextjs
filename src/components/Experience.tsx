@@ -40,7 +40,7 @@ const timelineItems = [
     type: "education",
     role: "Bachelor of Science in Computer Science",
     company: "Sukkur IBA University",
-    duration: "Mar 2020 – Jan 2024",
+    duration: "Mar 2020 – Dec 2024",
     points: [
       "Fully Funded Merit Scholarship recipient.",
       "Led technical & AI-based projects during final year.",
